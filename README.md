@@ -5,10 +5,6 @@ RASM3 is a project where the programmer must create certain utility functions fr
 - Craig Shane
 - Jacob Campbell
 
-## Resources
-- ![Project Description](/C:/Users/jacob/Downloads/RASM%20Project%20Description.pdf)
-- ![String Function References in Java](/C:/Users/jacob/Downloads/CS3B%20RASM3%20short%20list.pdf)
-
 ### Summary of Requirements for Driver Function
 - [ ] Determines the length of the first string and print the length
 - [ ] Determines if str1 and str2 are equal and print the result of the comparison
