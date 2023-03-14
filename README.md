@@ -6,6 +6,7 @@ RASM3 is a project where the programmer must create certain utility functions fr
 - Jacob Campbell
 
 ### Summary of Requirements for Driver Function
+- [ ] Gets 4 strings as input from the user, each of at least 10 characters, the last two of which are equal but different "case"
 - [ ] Determines the length of the first string and print the length
 - [ ] Determines if str1 and str2 are equal and print the result of the comparison
 - [ ] Determines if str3 and str4 are equal and print the result of the comparison
