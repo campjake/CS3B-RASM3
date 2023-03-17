@@ -2,7 +2,7 @@
 RASM3 is a project where the programmer must create certain utility functions from the std string library in ARM 64 Assembly
 
 ## Members
-- Craig Shane
+- Gregory Shane
 - Jacob Campbell
 
 ### Summary of Requirements for Driver Function
