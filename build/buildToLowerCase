@@ -1,0 +1,2 @@
+as -g -o ../obj/toLowerCase.o ../src/toLowerCase.s
+ld -o toLowerCase ../obj/toLowerCase.o
