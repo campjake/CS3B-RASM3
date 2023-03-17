@@ -43,7 +43,7 @@ LOOP:
 	SUB		W2, W2, 0x20		// Change to upper-case
 
 STORE:
-	STRB		W2, [X0, X1]	// Overwrite szIn[i] with upper-case character
+	STRB	W2, [X0, X1]	// Overwrite szIn[i] with upper-case character
 	ADD		X1, X1, #1			// i++
 	CMP		W2, 0x00			// Check if we hit the null byte
 	BNE		LOOP				// Back to while() if no the null byte

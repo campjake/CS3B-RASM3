@@ -1,12 +1,12 @@
 	.data
-sz1:	.asciz	"aaaa"
+sz1:	.asciz	"JAKE"
 
 	.global _start
 	.text
 
 _start:
 	LDR	X0,=sz1		// Load string
-	BL	toUpperCase	// X0 points to sz1 all upper-case
+	BL	toLowerCase	// X0 points to sz1 all upper-case
 	LDR	X2,=sz1		// Break here if needed
 	LDR	X2, [X2]	// Check if its upper-case
 
