@@ -48,9 +48,12 @@ szStarts2:	.asciz	"Cat"
 szEndsWith:	.asciz	"String_endsWith(s1, \"in the hat.\") = "
 szEnds:		.asciz	"in the hat."
 
+szReplace:	.asciz	"String_replace(s1, 'a', 'o') = "
+szLower:	.asciz	"String_toLowerCase(s1) = "
+szUpper:	.asciz	"String_toUpperCase(s1) = "
+
 szTrue:		.asciz 	"TRUE"
 szFalse:	.asciz	"FALSE"
-
 chDq:		.byte	34	// ascii "
 chQt:		.byte	39	// ascii '
 chCr:		.byte	10	// ascii carriage return
@@ -397,6 +400,55 @@ trueEW:
 // string_indexOf
 indexOf:
 
+
+
+
+// string_Replace
+	LDR x0,=szInput1	// points to szInput1
+	MOV x1, #'a'		// old char = a
+	MOV x2, #'o'		// new char = o
+	BL  String_replace	// String_replace(s1,'a','o')
+
+	LDR x0,=szReplace	// points to szReplace
+	BL  putstring		// displays to terminal
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+	LDR x0,=szInput1	// points to szInput1 (changed)
+	BL  putstring		// displays to terminal
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
+
+// String_toLower
+	LDR x0,=szLower		// points to szLower
+	BL  putstring		// displays to terminal
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+
+	LDR x0,=szInput1	// points to szInput1
+	BL  toLowerCase		// String_toLowerCase(s1)
+	BL  putstring		// display new string to terminal
+
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
+
+// String_toUpper
+	LDR x0,=szUpper		// points to szUpper
+	BL  putstring		// displays to terminal
+	LDR x0,=chDq		// points to double quote
+	BL  putch		// displays to terminal
+
+	LDR x0,=szInput1	// points to szInput1
+	BL  toUpperCase		// string_toUpperCase(s1)
+	BL  putstring		// displays new string to terminal
+
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // preparing to exit program
 	MOV x0,#0		// return code 0
