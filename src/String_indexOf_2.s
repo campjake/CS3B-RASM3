@@ -15,9 +15,9 @@
 // All registers except X3, X4, X5 are preserved
 
 	.text
-	.global String_indexOf_1
+	.global String_indexOf_2
 
-String_indexOf_1:
+String_indexOf_2:
 	
 // while(szIn[i] != 0x00 &&
 //		 szIn[i] != chIn)

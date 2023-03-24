@@ -12,7 +12,7 @@
 // Postconditions	- returns an index number in X0
 
 	.text
-	.gloval String_lastIndexOf_1
+	.global String_lastIndexOf_1
 
 String_lastIndexOf_1:
 	STR		LR, [SP, #-16]!	// Push LR
