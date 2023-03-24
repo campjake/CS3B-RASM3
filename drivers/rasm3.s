@@ -21,6 +21,9 @@ szOutput:	.skip	21	// output string
 str4ptr:	.quad	0	// string4 pointer
 szSubstring:	.quad	0	// pointer for substring
 bChar:		.byte	0	// char (for results of charAt subroutine)
+concatPtr1:	.quad	0	// ptr for concat1
+concatPtr2:	.quad	0	// ptr for concat2
+
 
 szLength1:	.asciz	"S1.length() = "
 szLength2:	.asciz	"S2.length() = "
@@ -51,6 +54,10 @@ szEnds:		.asciz	"in the hat."
 szReplace:	.asciz	"String_replace(s1, 'a', 'o') = "
 szLower:	.asciz	"String_toLowerCase(s1) = "
 szUpper:	.asciz	"String_toUpperCase(s1) = "
+
+szConcat1:	.asciz	"String_concat1(s1, \" \");\n"
+szConcat2:	.asciz	"String_concat2(s1, s2) = "
+szSpace:	.asciz	" "
 
 szTrue:		.asciz 	"TRUE"
 szFalse:	.asciz	"FALSE"
@@ -449,6 +456,38 @@ indexOf:
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+
+// String_concat
+	LDR x0,=szConcat1	// point to szConcat1
+	BL  putstring		// display to terminal
+
+	LDR x0,=szConcat2	// point to szConcat2
+	BL putstring		// display to terminal
+
+	LDR x0,=szInput1	// point to string1
+	LDR x1,=szSpace		// point to szSpace
+	BL  String_concat	// String_concat1(s1, " ")
+
+	LDR x1,=concatPtr1	// point to concatPtr1
+	STR x0, [x1]		// store address
+
+	LDR x1,=szInput2	// point to szInput2
+	BL  String_concat	// String_concat(s1, s2)
+
+	LDR x1,=concatPtr2	// points to concatPtr2
+	STR x0,[x1]		// store address
+	BL  putstring		// display to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// display to terminal
+
+// free allocated memeory
+	LDR x0,=concatPtr1	// points to concatPtr1
+	LDR x0, [x0]		// loads stored address
+	BL  free		// free allocated memory
+
+	LDR x0,=concatPtr2	// points to concatPtr2
+	LDR x0,[x0]		// loads stored address
+	BL  free		// free allocated memory
 
 // preparing to exit program
 	MOV x0,#0		// return code 0
