@@ -1,5 +1,5 @@
 // Style Sheet
-// Programmer   : Jacob Campbell & Craig Shane
+// Programmer   : Jacob Campbell & Gregory Shane
 // RASM #       : 3
 // Purpose      : String Library - String_indexOf_2
 // Date         : 3/21/2023
@@ -18,22 +18,23 @@
 	.global String_indexOf_2
 
 String_indexOf_2:
-	
+
 // while(szIn[i] != 0x00 &&
 //		 szIn[i] != chIn)
 // i++
 
 LOOP:
-	LDRB	W3, [X0, X2]	// Load szIn[i]
-	CMP		X3, 0x00		// Check for null-terminator
-	BEQ		NOT_FOUND		// Branch to NOT_FOUND
-	CMP		X3, X1			// Check X2 == X1
-	BEQ		END				// Branch to END
-	ADD		X2, X2, #1		// i++
+	LDRB	W3, [X0, X2]		// Load szIn[i]
+	CMP	X3, 0x00		// Check for null-terminator
+	BEQ	NOT_FOUND		// Branch to NOT_FOUND
+	CMP	X3, X1			// Check X2 == X1
+	BEQ	END			// Branch to END
+	ADD	X2, X2, #1		// i++
+	B       LOOP
 
 NOT_FOUND:
-	MOV	X5, #-1				// Change return val to -1
+	MOV	X2, #-1			// Change return val to -1
 
 END:
-	MOV	X0, X5				// Put index val in X0
+	MOV	X0, X2			// Put index val in X0
 	RET
