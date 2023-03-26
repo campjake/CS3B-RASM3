@@ -51,6 +51,17 @@ szStarts2:	.asciz	"Cat"
 szEndsWith:	.asciz	"String_endsWith(s1, \"in the hat.\") = "
 szEnds:		.asciz	"in the hat."
 
+szIndexOf1:	.asciz	"String_indexOf_1(s1, 't') = "
+szIndexOf2:	.asciz	"String_indexOf_2(s1, 't', 6) = "
+szIndexOf3:	.asciz	"String_indexOf_3(s1, \"the\") = "
+
+szLastIndexOf1:	.asciz	"String_lastIndexOf_1(s1, 't') = "
+szLastIndexOf2:	.asciz	"String_lastIndexOf_2(s1, 't', 5) = "
+szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s1, \"the\"
+) = "
+szIndexOfSubstring:	.asciz	"the"
+szIndexOfIndex:		.skip	21
+
 szReplace:	.asciz	"String_replace(s1, 'a', 'o') = "
 szLower:	.asciz	"String_toLowerCase(s1) = "
 szUpper:	.asciz	"String_toUpperCase(s1) = "
@@ -406,8 +417,130 @@ trueEW:
 
 // string_indexOf
 indexOf:
+//String_indexOf_1
+	LDR	X0,=szStr1		// *X0 = szStr1
+	BL	putstring		// Print "str1 = "
+	
+	LDR	X0,=szInput1	// *X0 = szInput1
+	BL	putstring		// Print szInput1
 
+	LDR	X0,=chCr		// Load line feed
+	BL	putch			// Print line feed
 
+	LDR	X0,=szIndexOf1	// *X0 = szIndexOf1
+	BL	putstring		// Print szIndexOf1
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	MOV	X1, 0x74		// X1 = 't'
+
+	BL	String_indexOf_1	// X0 = i
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// String_IndexOf_2
+	LDR	X0,=szIndexOf2		// *X0 = szIndexOf2
+	BL	putstring			// Print szIndexOf2
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	MOV	X1, 0x74		// X1 = 't'
+	MOV	X2, #6			// X2 = 6
+
+	BL	String_indexOf_2	// X0 = index
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// String_indexOf_3
+	LDR	X0,=szIndexOf3		// *X0 = szIndexOf3
+	BL	putstring			// Print szIndexOf3
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	LDR	X1,=szIndexOfSubstring	// X1 = 'the'
+
+	BL	String_indexOf_3	// X0 = index
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// String_lastIndexOf_1
+	LDR	X0,=szLastIndexOf1	// *X0 = szLastIndexOf1
+	BL	putstring			// Print szLastIndexOf1
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	MOV	X1, 0x74		// X1 = 't'
+
+	BL	String_lastIndexOf_1	// X0 = i
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// String_lastIndexOf_2
+	LDR	X0,=szLastIndexOf2		// *X0 = szIndexOf2
+	BL	putstring			// Print szIndexOf2
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	MOV	X1, 0x74		// X1 = 't'
+	MOV	X2, #5			// X2 = 5
+
+	BL	String_lastIndexOf_2	// X0 = index
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// String_lastIndexOf_3
+	LDR	X0,=szLastIndexOf3		// *X0 = szIndexOf3
+	BL	putstring			// Print szIndexOf3
+
+	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	LDR	X1,=szIndexOfSubstring	// X1 = 'the'
+
+	BL	String_lastIndexOf_3	// X0 = index
+	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	BL	int64asc			// X1 points to index
+	MOV	X0, X1				// *X0 = index string
+	BL	putstring			// Print index value
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed		
 
 
 // string_Replace
