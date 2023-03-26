@@ -1,2 +1,0 @@
-as -g -o ../obj/toUpperCase.o ../src/toUpperCase.s
-ld -o toUpperCase ../obj/toUpperCase.o
