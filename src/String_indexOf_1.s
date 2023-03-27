@@ -10,7 +10,7 @@
 //				 	- Pass a 1-byte character ascii value through X1
 // Postconditions 	- Returns the index number of first occurrence of the character to X0
 //					- If the character is not in the string, returns -1 to X0
-// All registers except X3, X4, X5 are preserved
+// All registers except X0 - X2, & X5 are preserved
 
 	.text
 	.global String_indexOf_1

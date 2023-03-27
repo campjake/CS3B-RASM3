@@ -24,17 +24,17 @@ String_indexOf_2:
 // i++
 
 LOOP:
-	LDRB	W3, [X0, X2]		// Load szIn[i]
-	CMP	X3, 0x00		// Check for null-terminator
-	BEQ	NOT_FOUND		// Branch to NOT_FOUND
-	CMP	X3, X1			// Check X2 == X1
-	BEQ	END			// Branch to END
-	ADD	X2, X2, #1		// i++
-	B       LOOP
+	LDRB	W3, [X0, X2]	// Load szIn[i]
+	CMP		X3, 0x00		// Check for null-terminator
+	BEQ		NOT_FOUND		// Branch to NOT_FOUND
+	CMP		X3, X1			// Check X2 == X1
+	BEQ		END				// Branch to END
+	ADD		X2, X2, #1		// i++
+	B   	LOOP			// Branch to LOOP
 
 NOT_FOUND:
-	MOV	X2, #-1			// Change return val to -1
+	MOV	X2, #-1				// Change return val to -1
 
 END:
-	MOV	X0, X2			// Put index val in X0
+	MOV	X0, X2				// Put index val in X0
 	RET

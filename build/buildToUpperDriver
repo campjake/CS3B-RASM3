@@ -1,2 +1,0 @@
-as -g -o ../obj/driver-obj/toUpperDriver.o ../drivers/toUpperDriver.s
-ld -o toUpperDriver ../obj/driver-obj/toUpperDriver.o ../obj/toLowerCase.o
