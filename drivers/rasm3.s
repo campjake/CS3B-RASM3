@@ -51,15 +51,16 @@ szStarts2:	.asciz	"Cat"
 szEndsWith:	.asciz	"String_endsWith(s1, \"in the hat.\") = "
 szEnds:		.asciz	"in the hat."
 
-szIndexOf1:	.asciz	"String_indexOf_1(s1, 't') = "
-szIndexOf2:	.asciz	"String_indexOf_2(s1, 't', 6) = "
-szIndexOf3:	.asciz	"String_indexOf_3(s1, \"the\") = "
+szIndexOf1:	.asciz	"String_indexOf_1(s2, 'g') = "
+szIndexOf2:	.asciz	"String_indexOf_2(s2, 'g', 9) = "
+szIndexOf3:	.asciz	"String_indexOf_3(s2, \"eggs\") = "
 
-szLastIndexOf1:	.asciz	"String_lastIndexOf_1(s1, 't') = "
-szLastIndexOf2:	.asciz	"String_lastIndexOf_2(s1, 't', 5) = "
-szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s1, \"the\"
+szLastIndexOf1:	.asciz	"String_lastIndexOf_1(s2, 'g') = "
+szLastIndexOf2:	.asciz	"String_lastIndexOf_2(s2, 'g', 6) = "
+szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s2, \"egg\"
 ) = "
-szIndexOfSubstring:	.asciz	"the"
+szIndexOfSubstring1:	.asciz	"eggs"
+szIndexOfSubstring2:	.asciz	"egg"
 szIndexOfIndex:		.skip	21
 
 szReplace:	.asciz	"String_replace(s1, 'a', 'o') = "
@@ -418,10 +419,10 @@ trueEW:
 // string_indexOf
 indexOf:
 //String_indexOf_1
-	LDR	X0,=szStr1		// *X0 = szStr1
+	LDR	X0,=szStr2		// *X0 = szStr1
 	BL	putstring		// Print "str1 = "
 	
-	LDR	X0,=szInput1	// *X0 = szInput1
+	LDR	X0,=szInput2	// *X0 = szInput1
 	BL	putstring		// Print szInput1
 
 	LDR	X0,=chCr		// Load line feed
@@ -431,7 +432,7 @@ indexOf:
 	BL	putstring		// Print szIndexOf1
 
 	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	MOV	X1, 0x74		// X1 = 't'
+	MOV	X1, 0x67		// X1 = 'g'
 
 	BL	String_indexOf_1	// X0 = i
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
@@ -450,8 +451,8 @@ indexOf:
 	BL	putstring			// Print szIndexOf2
 
 	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	MOV	X1, 0x74		// X1 = 't'
-	MOV	X2, #6			// X2 = 6
+	MOV	X1, 0x67		// X1 = 'g'
+	MOV	X2, #9			// X2 = 9
 
 	BL	String_indexOf_2	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
@@ -469,8 +470,8 @@ indexOf:
 	LDR	X0,=szIndexOf3		// *X0 = szIndexOf3
 	BL	putstring			// Print szIndexOf3
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	LDR	X1,=szIndexOfSubstring	// X1 = 'the'
+	LDR	X0,=szInput2			// *X0 = Green eggs and ham.
+	LDR	X1,=szIndexOfSubstring1	// X1 = 'eggs'
 
 	BL	String_indexOf_3	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
@@ -488,8 +489,8 @@ indexOf:
 	LDR	X0,=szLastIndexOf1	// *X0 = szLastIndexOf1
 	BL	putstring			// Print szLastIndexOf1
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	MOV	X1, 0x74		// X1 = 't'
+	LDR	X0,=szInput2	// *X0 = Green eggs and ham
+	MOV	X1, 0x67		// X1 = 'g'
 
 	BL	String_lastIndexOf_1	// X0 = i
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
@@ -507,9 +508,9 @@ indexOf:
 	LDR	X0,=szLastIndexOf2		// *X0 = szIndexOf2
 	BL	putstring			// Print szIndexOf2
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	MOV	X1, 0x74		// X1 = 't'
-	MOV	X2, #5			// X2 = 5
+	LDR	X0,=szInput2	// *X0 = Cat in the hat
+	MOV	X1, 0x67		// X1 = 'g'
+	MOV	X2, #6			// X2 = 6
 
 	BL	String_lastIndexOf_2	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
@@ -527,8 +528,8 @@ indexOf:
 	LDR	X0,=szLastIndexOf3		// *X0 = szIndexOf3
 	BL	putstring			// Print szIndexOf3
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	LDR	X1,=szIndexOfSubstring	// X1 = 'the'
+	LDR	X0,=szInput2	// *X0 = Cat in the hat
+	LDR	X1,=szIndexOfSubstring2	// X1 = 'egg'
 
 	BL	String_lastIndexOf_3	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
