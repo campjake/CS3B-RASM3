@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - Sptring 2023
 // RASM3 - String_startsWithIndex
 // last modified: 3.20.2023

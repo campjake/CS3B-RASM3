@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - Spring 2023
 // RASM3 - String Replace
 // Last modified: 3.22.2023
@@ -13,7 +13,7 @@
 //  LR must contain return address
 //  ALL AAPCS Mandated registers are preserved.
 
-	.global String_replace
+	.global String_replace	// set starting point for subroutine
 
 	.text
 

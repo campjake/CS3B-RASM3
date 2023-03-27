@@ -1,4 +1,4 @@
-// Promgrammer: Gregory Shane
+// Promgrammer: Gregory Shane and Jacob Campebll
 // CS3B - spring 2023
 // RASM3 - string_charAt
 // Last modified: 3.18.2023

@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane and Jake Campbell
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - Spring 2023
 // RASM3 - String_concat()
 // last modified: 3.24.2023

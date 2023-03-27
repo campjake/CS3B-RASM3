@@ -73,3 +73,5 @@ END:
 	LDR	X20, [SP], #16		// Pop X20
 	LDR	X19, [SP], #16		// Pop X19
 	RET
+
+	.end

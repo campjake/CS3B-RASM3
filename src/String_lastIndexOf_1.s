@@ -16,13 +16,13 @@
 	.global String_lastIndexOf_1
 
 String_lastIndexOf_1:
-	STR		X21, [SP, #-16]! // Push X21
-	STR		X22, [SP, #-16]! // Push X22
-	STR		LR, [SP, #-16]!	// Push LR
-	
+	STR		X21, [SP, #-16]! 	// Push X21
+	STR		X22, [SP, #-16]! 	// Push X22
+	STR		LR, [SP, #-16]!		// Push LR
+
 	MOV		X21, X0			// Copy string ptr to X21
 	MOV		X22, X1			// Copy char to X22
-	BL		String_length	// Get string length (i)
+	BL		String_length		// Get string length (i)
 	SUB		X1, X0, #1		// Copy strlen - 1 to X1 to start at last char
 
 LOOP:
@@ -42,7 +42,11 @@ NOT_FOUND:
 
 END:
 	MOV		X0, X1			// Copy index value to X0
-	LDR		LR, [SP], #16	// Pop LR
-	LDR		X22, [SP], #16  // Pop X22
-	LDR		X21, [SP], #16	// Pop X21
+
+	LDR		LR, [SP], #16		// Pop LR
+	LDR		X22, [SP], #16  	// Pop X22
+	LDR		X21, [SP], #16		// Pop X21
+
 	RET
+
+	.end

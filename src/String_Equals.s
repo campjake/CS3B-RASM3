@@ -1,4 +1,4 @@
-// Programmer: Gergory Shane
+// Programmer: Gergory Shane and Jacob Campbell
 // CS3B - Spring 2023
 // RASM3
 // Subroutine: String_equals
@@ -10,6 +10,8 @@
 // LR must contain return address
 //
 // Results return in x0
+// x1 and x2 are modified
+// ALL mandated AAPCS registers are preserved
 
 	.global String_Equals
 

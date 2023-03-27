@@ -1,10 +1,10 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3b - Spring 2023
 // RASM3
 // subroutine: String_EqualIgnoreCase
 // Last Modified: 3.14.2023
 
-// String_EqualsIC: Compares two strings ignoring case sensitivity if they match. 
+// String_EqualsIC: Compares two strings ignoring case sensitivity if they match.
 //   Returns false (0) or true (1)
 //
 // X0 = must contain first null terminated string

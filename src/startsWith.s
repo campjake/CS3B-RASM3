@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - Spring 2023
 // RASM3 - String_startsWith(string, substring)
 // last modified: 3.20.2023
@@ -10,7 +10,7 @@
 // x0 must contain the address of a null terminated string
 // x1 must contain the address of a null terminate substring
 // LR must contain returning address.
-// ALL AAPCS registers are perserved.
+// ALL AAPCS registers are preserved.
 // Results returned in x0.
 
 	.global startsWith	// sets starting point of subroutine

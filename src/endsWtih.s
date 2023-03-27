@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - SPring 2023
 // RASM 3 - String_endsWith subroutine
 // Last Modified: 3.19.2023

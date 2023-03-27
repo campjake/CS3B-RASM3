@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jacob Campbell
 // CS3B - Spring 2023
 // RASM3 - substring with starting and ending index
 // Last modified: 3.2.2023
@@ -12,7 +12,7 @@
 // x2 must conatain the ending index
 // LR must contain the returning address
 
-// ALL AAPCS registers are perserved
+// ALL AAPCS registers are preserved
 // various registers modified due to malloc
 
 	.global substring1	// sets starting point of subroutine
