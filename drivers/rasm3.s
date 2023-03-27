@@ -57,8 +57,7 @@ szIndexOf3:	.asciz	"String_indexOf_3(s2, \"eggs\") = "
 
 szLastIndexOf1:	.asciz	"String_lastIndexOf_1(s2, 'g') = "
 szLastIndexOf2:	.asciz	"String_lastIndexOf_2(s2, 'g', 6) = "
-szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s2, \"egg\"
-) = "
+szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s2, \"egg\") = "
 szIndexOfSubstring1:	.asciz	"eggs"
 szIndexOfSubstring2:	.asciz	"egg"
 szIndexOfIndex:		.skip	21
@@ -73,8 +72,8 @@ szSpace:	.asciz	" "
 
 szTrue:		.asciz 	"TRUE"
 szFalse:	.asciz	"FALSE"
-chDq:		.byte	34	// ascii "
-chQt:		.byte	39	// ascii '
+chDq:		.byte	34	// ascii double quotes
+chQt:		.byte	39	// ascii single quotes
 chCr:		.byte	10	// ascii carriage return
 
 	.text
@@ -113,6 +112,8 @@ _start:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0, =chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 	LDR x0,=szInput2	// points to szInput2
 	BL  String_length	// string2.length()
@@ -123,6 +124,8 @@ _start:
 	BL  putstring		// displays to terminal
 	LDR x0,=szOutput	// points to szOutput
 	BL  putstring		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -137,14 +140,15 @@ _start:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
-
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 // string_equals:
 	LDR x0,=szEqual1	// points to szEqual1
 	BL  putstring		// display to terminal
 
 	LDR x0,=szInput1	// points to string1
 	LDR x1,=szInput3	// points to string3
-	BL  Str_Equals		// String_equals(s1,s3)
+	BL  String_Equals	// String_equals(s1,s3)
 
 	CMP x0,#1		// compare x0 to #1 (true)
 	B.EQ trueEQ		// branch if equal
@@ -154,11 +158,15 @@ _start:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	B   Eq2			// brnach to next part
 
 trueEQ:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -169,7 +177,7 @@ Eq2:
 
 	LDR x0,=szInput1	// points to string1
 	LDR x1,=szInput1	// points to strin1
-	BL  Str_Equals		// string_equals(s1,s1)
+	BL  String_Equals	// string_equals(s1,s1)
 
 	CMP x0,#1		// compare x0 to #1 (true)
 	B.EQ trueEq2		// branch if equal
@@ -179,12 +187,16 @@ Eq2:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	B   EqIC		// branch to next part
 
 trueEq2:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to cariage return
 	BL  putch		// displays to terminal
 
 // String_EqualsIgnoreCase(s1,s3)
@@ -204,6 +216,8 @@ EqIC:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// display to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	B  EqIC2		// branch to next part
 
 trueEqIC:
@@ -211,6 +225,8 @@ trueEqIC:
 	BL  putstring		// display to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to termainl
 
 // String_EqualsIgnoreCase(s1,s2)
 EqIC2:
@@ -229,11 +245,15 @@ EqIC2:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	B   copy		// branch to next part
 
 trueEqIC2:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -262,6 +282,8 @@ copy:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // free up memory from copy
 	LDR x0,=str4ptr		// points to str4ptr
@@ -286,6 +308,8 @@ copy:
 	BL  putstring		// displays to terminal
 	LDR x0,=chDq		// points to double quotes
 	BL putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -313,6 +337,8 @@ copy:
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // free allocated memory
 	LDR x0,=szSubstring	// points to szSubstring
@@ -337,6 +363,8 @@ copy:
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// point to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// display to terminal
 
 // String_startsWithIndex
 	LDR x0,=szStartsWith1	// points to szStartsWith1
@@ -355,12 +383,16 @@ copy:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 	B   startsWith2		// branch to next part
 
 trueSWI:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -381,12 +413,16 @@ startsWith2:
 	BL  putstring		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 	B  endsW		// branch to next part
 
 trueSW:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 
@@ -407,6 +443,8 @@ endsW:
 	BL  putstring		// display to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch
 
 	B  indexOf		// branch to next part
 
@@ -414,30 +452,24 @@ trueEW:
 	LDR x0,=szTrue		// points to szTrue
 	BL  putstring		// display to terminal
 	LDR x0,=chCr		// points to carriage return
-	BL putch		// display to terminal
+	BL  putch		// display to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // string_indexOf
 indexOf:
 //String_indexOf_1
-	LDR	X0,=szStr2		// *X0 = szStr1
-	BL	putstring		// Print "str1 = "
-	
-	LDR	X0,=szInput2	// *X0 = szInput1
-	BL	putstring		// Print szInput1
-
-	LDR	X0,=chCr		// Load line feed
-	BL	putch			// Print line feed
-
 	LDR	X0,=szIndexOf1	// *X0 = szIndexOf1
 	BL	putstring		// Print szIndexOf1
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
-	MOV	X1, 0x67		// X1 = 'g'
-
+	LDR	X0,=szInput2	// *X0 = Green eggs and ham.
+	MOV	X1, #'g'		// X1 = 'g'
 	BL	String_indexOf_1	// X0 = i
+
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	X0,=szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -450,14 +482,15 @@ indexOf:
 	LDR	X0,=szIndexOf2		// *X0 = szIndexOf2
 	BL	putstring			// Print szIndexOf2
 
-	LDR	X0,=szInput1	// *X0 = Cat in the hat
+	LDR	X0,=szInput2	// *X0 = Cat in the hat
 	MOV	X1, 0x67		// X1 = 'g'
 	MOV	X2, #9			// X2 = 9
 
 	BL	String_indexOf_2	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	x0,=szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -476,7 +509,8 @@ indexOf:
 	BL	String_indexOf_3	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	X0, =szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -495,7 +529,8 @@ indexOf:
 	BL	String_lastIndexOf_1	// X0 = i
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	X0, =szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -515,7 +550,8 @@ indexOf:
 	BL	String_lastIndexOf_2	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	X0, =szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -528,20 +564,21 @@ indexOf:
 	LDR	X0,=szLastIndexOf3		// *X0 = szIndexOf3
 	BL	putstring			// Print szIndexOf3
 
-	LDR	X0,=szInput2	// *X0 = Cat in the hat
-	LDR	X1,=szIndexOfSubstring2	// X1 = 'egg'
+	LDR	X0,=szInput2			// *X0 = Cat in the hat
+	LDR	X1,=szIndexOfSubstring2		// X1 = 'egg'
 
 	BL	String_lastIndexOf_3	// X0 = index
 	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
-	MOV	X0, X1				// *X0 = index string
+
+	LDR	X0, =szIndexOfIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
 	BL	putch				// Print line feed
 
 	LDR	X0,=chCr			// Load line feed
-	BL	putch				// Print line feed		
+	BL	putch				// Print line feed
 
 
 // string_Replace
@@ -560,6 +597,8 @@ indexOf:
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // String_toLower
 	LDR x0,=szLower		// points to szLower
@@ -572,6 +611,8 @@ indexOf:
 	BL  putstring		// display new string to terminal
 
 	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
@@ -590,6 +631,8 @@ indexOf:
 	BL  putch		// displays to terminal
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// displays to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // String_concat
 	LDR x0,=szConcat1	// point to szConcat1
@@ -597,6 +640,9 @@ indexOf:
 
 	LDR x0,=szConcat2	// point to szConcat2
 	BL putstring		// display to terminal
+
+	LDR x0,=chDq		// points to double quotes
+	BL  putch
 
 	LDR x0,=szInput1	// point to string1
 	LDR x1,=szSpace		// point to szSpace
@@ -611,8 +657,13 @@ indexOf:
 	LDR x1,=concatPtr2	// points to concatPtr2
 	STR x0,[x1]		// store address
 	BL  putstring		// display to terminal
+	LDR x0,=chDq		// points to double quotes
+	BL  putch		// displays to terminal
+
 	LDR x0,=chCr		// points to carriage return
 	BL  putch		// display to terminal
+	LDR x0,=chCr		// points to carriage return
+	BL  putch		// displays to terminal
 
 // free allocated memeory
 	LDR x0,=concatPtr1	// points to concatPtr1
