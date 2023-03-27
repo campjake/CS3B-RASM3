@@ -15,60 +15,61 @@
 	.global String_indexOf_3
 
 String_indexOf_3:
-	STR		X19, [SP, #-16]!	// Push X19
-	STR		X20, [SP, #-16]!	// Push X20
-	STR		X21, [SP, #-16]!	// Push X21
-	STR		X22, [SP, #-16]!	// Push X22
-	STR		X23, [SP, #-16]!	// Push X23
-	STR		LR, [SP, #-16]!		// Push LR
+	STR	X19, [SP, #-16]!	// Push X19
+	STR	X20, [SP, #-16]!	// Push X20
+	STR	X21, [SP, #-16]!	// Push X21
+	STR	X22, [SP, #-16]!	// Push X22
+	STR	X23, [SP, #-16]!	// Push X23
+	STR	LR, [SP, #-16]!		// Push LR
 
-	MOV		X19, X0		// Copy string
- 	MOV		X20, X1		// Copy substring
- 	MOV		X21, #0		// init i = 0
-	MOV		X22, #0		// init j = 0
+	MOV	X19, X0			// Copy string
+ 	MOV	X20, X1			// Copy substring
+ 	MOV	X21, #0			// init i = 0
+	MOV	X22, #0			// init j = 0
 
-	LDRB	W2, [X20]	// Get base address of substring
+	LDRB	W2, [X20]		// Get base address of substring
 
-LOOP:
-// Find where a matching character is
-	LDRB	W1, [X19, X21]		// Get a char of string at index i
-	CMP		X1, 0x00			// Check if hit null term
-	BEQ		NOT_FOUND			// Branch to NOT_FOUND
-	
-	CMP		W1, W2				// CMP characters of string and substring
-	MOV		X23, X21			// Copy i to X23
-	ADD		X21, X21, #1		// i++
-	BNE		LOOP				// Branch back to loop
+Loop:
+// Find where a matching character i
+	LDRB 	w1, [x19, x21]		// load string[i]
+	CMP	w1, #0x00		// compare for null
+	BEQ	NOT_FOUND		// branch if found
 
-COMPARE:
-	LDRB	W1, [X19, X23]		// Load string[k]
-	LDRB	W3, [X20, X22]		// Load substring[j]
+	CMP	w1, w2			// compare string[i] and sub[i]
+	ADD 	x21, x21, #1		// i++
+	BNE	Loop			// branch back to loop
 
-	CMP		W2, 0x00			// Check for null term
-	BEQ		FOUND				// Branch if found
+compare:
+	LDRB	w1, [x19, x21]		// string[i]
+	LDRB	w2, [x20, x22]		// sub[j]
 
-	ADD		X23, X23, #1		// k++	(k is copy of i)
-	ADD		X22, X22, #1		// j++
+	CMP	w2, #0x00		// check for null on substring
+	BEQ	FOUND			// branch if found
 
-	CMP		W1, W2				// string[k] == string[j]
-	BEQ		COMPARE				// Branch back to COMPARE
+	ADD 	x21, x21, #1		// i++
+	ADD	x22, x22, #1		// j++
 
-	LDRB	W2, [X20]			// Load substring base address
-	MOV		X22, #0				// init j = 0
-	B.NE	LOOP				// Branch back to LOOP
+	CMP	w1, w2			// compare string[i] and sub[j]
+	BEQ	compare			// branch back if equal
+
+	LDRB	w2, [x20]		// w2 = sub[0]
+	SUB	x21, x21, x22		// i = i - j
+	ADD	x21, x21, #1		// i++
+	MOV	x22, #1			// j = 1
+	BNE	Loop
 
 NOT_FOUND:
-	MOV		X0, #-1				// Return -1 if not found
-	B		END					// Branch to end
+	MOV	X0, #-1			// Return -1 if not found
+	B	END			// Branch to end
 
 FOUND:
-	SUB		X0, X21, #1			// i--
+	SUB	X0, X21, x22		// x0 = i - j
 
 END:
-	LDR		LR, [SP], #16		// Pop LR
-	LDR		X23, [SP], #16		// Pop X23
-	LDR		X22, [SP], #16		// Pop X22
-	LDR		X21, [SP], #16		// Pop X21
-	LDR		X20, [SP], #16		// Pop X20
-	LDR		X19, [SP], #16		// Pop X19
+	LDR	LR, [SP], #16		// Pop LR
+	LDR	X23, [SP], #16		// Pop X23
+	LDR	X22, [SP], #16		// Pop X22
+	LDR	X21, [SP], #16		// Pop X21
+	LDR	X20, [SP], #16		// Pop X20
+	LDR	X19, [SP], #16		// Pop X19
 	RET

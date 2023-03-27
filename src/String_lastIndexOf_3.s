@@ -36,23 +36,23 @@ String_lastIndexOf_3:
 
 	MOV		X0, X1				// Move substring to X0
 	BL		String_length		// String length of substr in X0
-	SUB		X21, X0, X23		// i = string_length - substring_length
+	SUB		X21, X23, X0		// i = string_length - substring_length
 								// string can't equal substring before until this index number
 	LDRB	W2, [X20]			// Get base address of substring
 
-LOOP:
+Loop:
 	LDRB	W1, [X19, X21]		// W1 = char of string[i]
 	CMP		W1, 0x00			// Check if hit null term
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
-	
+
 	MOV		X24, X21			// Copy i to X24
 	SUB		X21, X21, #1		// i--
 	CMP		X21, #-1			// Check if we passed front of string
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
 	CMP		W1, W2				// string[i] == substring[0]
-	BNE		LOOP				// Branch back to LOOP
+	BNE		Loop				// Branch back to LOOP
 
 COMPARE:
 	LDRB	W1, [X19, X24]		// Load string[k]
@@ -69,7 +69,7 @@ COMPARE:
 
 	LDRB	W2, [X20]			// Load substring base address
 	MOV		X22, #0				// init j = 0
-	BNE		LOOP				// Branch back to loop
+	BNE		Loop				// Branch back to loop
 
 NOT_FOUND:
 	MOV		X0, #-1				// Return -1 if not found

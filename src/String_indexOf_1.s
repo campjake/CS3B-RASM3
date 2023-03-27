@@ -22,14 +22,14 @@ String_indexOf_1:
 //		 szIn[i] != chIn)
 // i++
 
-LOOP:
+Loop:
 	LDRB	W2, [X0, X5]		// Load szIn[i]
 	CMP	X2, 0x00		// Check for null-terminator
 	BEQ	NOT_FOUND		// Branch to NOT_FOUND
 	CMP	X2, X1			// Check X2 == X1
 	BEQ	END			// Branch to END
 	ADD	X5, X5, #1		// i++
-	B	LOOP
+	B	Loop
 
 NOT_FOUND:
 	MOV	X5, #-1			// Change return val to -1
