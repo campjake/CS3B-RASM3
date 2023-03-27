@@ -45,12 +45,12 @@ Loop:
 	CMP		W1, 0x00			// Check if hit null term
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
-
-	SUB		X21, X21, #1		// i--
-	MOV		X24, X21			// Copy i to X24
+	MOV		X24, X21
+//	SUB		X21, X21, #1		// i--
 	CMP		X21, #-1			// Check if we passed front of string
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
+	SUB		X21, X21, #1
 	CMP		W1, W2				// string[i] == substring[0]
 	BNE		Loop				// Branch back to LOOP
 
@@ -76,7 +76,7 @@ NOT_FOUND:
 	B		END					// Branch to end
 
 FOUND:
-	SUB		X0, X21, #1			// i--
+	SUB		X0, X24,X22			// i--
 
 END:
 	LDR		LR, [SP], #16		// Pop LR

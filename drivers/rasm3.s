@@ -58,9 +58,9 @@ szIndexOf3:	.asciz	"String_indexOf_3(s2, \"eggs\") = "
 szLastIndexOf1:	.asciz	"String_lastIndexOf_1(s2, 'g') = "
 szLastIndexOf2:	.asciz	"String_lastIndexOf_2(s2, 'g', 6) = "
 szLastIndexOf3:	.asciz	"String_lastIndexOf_3(s2, \"egg\") = "
-szIndexOfSubstring1:	.asciz	"eggs"
-szIndexOfSubstring2:	.asciz	"egg"
-szIndexOfIndex:		.skip	21
+szIndexOfSub1:	.asciz	"eggs"
+szIndexOfSub2:	.asciz	"egg"
+szIndex:	.skip	21
 
 szReplace:	.asciz	"String_replace(s1, 'a', 'o') = "
 szLower:	.asciz	"String_toLowerCase(s1) = "
@@ -466,10 +466,10 @@ indexOf:
 	MOV	X1, #'g'		// X1 = 'g'
 	BL	String_indexOf_1	// X0 = i
 
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	X0,=szIndexOfIndex		// *X0 = index string
+	LDR	X0,=szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -487,10 +487,10 @@ indexOf:
 	MOV	X2, #9			// X2 = 9
 
 	BL	String_indexOf_2	// X0 = index
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	x0,=szIndexOfIndex		// *X0 = index string
+	LDR	x0,=szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -504,13 +504,13 @@ indexOf:
 	BL	putstring			// Print szIndexOf3
 
 	LDR	X0,=szInput2			// *X0 = Green eggs and ham.
-	LDR	X1,=szIndexOfSubstring1	// X1 = 'eggs'
+	LDR	X1,=szIndexOfSub1	// X1 = 'eggs'
 
 	BL	String_indexOf_3	// X0 = index
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	X0, =szIndexOfIndex		// *X0 = index string
+	LDR	X0, =szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -527,10 +527,10 @@ indexOf:
 	MOV	X1, 0x67		// X1 = 'g'
 
 	BL	String_lastIndexOf_1	// X0 = i
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	X0, =szIndexOfIndex		// *X0 = index string
+	LDR	X0, =szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -548,10 +548,10 @@ indexOf:
 	MOV	X2, #6			// X2 = 6
 
 	BL	String_lastIndexOf_2	// X0 = index
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	X0, =szIndexOfIndex		// *X0 = index string
+	LDR	X0, =szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
@@ -565,13 +565,13 @@ indexOf:
 	BL	putstring			// Print szIndexOf3
 
 	LDR	X0,=szInput2			// *X0 = Cat in the hat
-	LDR	X1,=szIndexOfSubstring2		// X1 = 'egg'
+	LDR	X1,=szIndexOfSub2		// X1 = 'egg'
 
 	BL	String_lastIndexOf_3	// X0 = index
-	LDR	X1,=szIndexOfIndex	// X1 = string ptr for index
+	LDR	X1,=szIndex	// X1 = string ptr for index
 	BL	int64asc			// X1 points to index
 
-	LDR	X0, =szIndexOfIndex		// *X0 = index string
+	LDR	X0, =szIndex		// *X0 = index string
 	BL	putstring			// Print index value
 
 	LDR	X0,=chCr			// Load line feed
