@@ -46,8 +46,8 @@ Loop:
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
 
-	MOV		X24, X21			// Copy i to X24
 	SUB		X21, X21, #1		// i--
+	MOV		X24, X21			// Copy i to X24
 	CMP		X21, #-1			// Check if we passed front of string
 	BEQ		NOT_FOUND			// Branch to NOT_FOUND
 
@@ -56,7 +56,7 @@ Loop:
 
 COMPARE:
 	LDRB	W1, [X19, X24]		// Load string[k]
-	LDRB	W3, [X20, X22]		// Load substring[j]
+	LDRB	W2, [X20, X22]		// Load substring[j]
 
 	CMP		W2, 0x00			// Check for null term
 	BEQ		FOUND				// Branch if found
