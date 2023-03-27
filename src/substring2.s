@@ -1,4 +1,4 @@
-// Programmer: Gregory Shane
+// Programmer: Gregory Shane and Jake Campbell
 // CS3B - Spring 2023
 // RASM3 - String_substring2
 // Last modified: 3.21.2023
@@ -34,6 +34,9 @@ substring2:
 	SUB x0, x0, x1		// x0 = string length - starting index
 	ADD x0, x0, #1		// add one for null
 
+	CMP x0, #0		// compare to 0
+	B.LT invalid		// branch if less than
+
 	BL malloc		// allocate memory
 	MOV x22, x0		// copy ptr to memory
 
@@ -47,7 +50,16 @@ loop:
 
 	MOV w1, #0x00		// load null to x1
 	STRB w1, [x0], #1	// add null to end of new string
+	B  finished
 
+invalid:
+	MOV x0, #1		// x0 = 1 byte
+	BL  malloc		// allocate space
+	MOV x1, #0x00		// x1 = null character
+	STRB w1, [x0]		// ensure new string just contains null
+	MOV x22, x0		// copy to x22
+
+finished:
 	MOV x0, x22		// move ptr address to x0
 
 	LDR x30, [SP], #16	// pop LR
