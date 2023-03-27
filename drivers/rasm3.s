@@ -70,6 +70,11 @@ szConcat1:	.asciz	"String_concat1(s1, \" \");\n"
 szConcat2:	.asciz	"String_concat2(s1, s2) = "
 szSpace:	.asciz	" "
 
+szHeadingNames: .asciz	"Team 14: Gregory Shane & Jacob Campbell"
+szHeadingClass:	.asciz	"Class  : CS3B"
+szHeadingAsgn:	.asciz	"RASM 3 : String Library"
+szHeadingDate:	.asciz	"Date   : 3/28/2023"
+
 szTrue:		.asciz 	"TRUE"
 szFalse:	.asciz	"FALSE"
 chDq:		.byte	34	// ascii double quotes
@@ -77,8 +82,36 @@ chQt:		.byte	39	// ascii single quotes
 chCr:		.byte	10	// ascii carriage return
 
 	.text
-// Prompting inputs
+// Print heading
 _start:
+	LDR	X0,=szHeadingNames	// *X0 = names
+	BL	putstring			// Print names
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=szHeadingClass	// *X0 = class
+	BL	putstring			// Print class
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=szHeadingAsgn	// *X0 = assignment
+	BL	putstring			// Print assignment
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=szHeadingDate	// *X0 = date
+	BL	putstring			// Print date
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+	LDR	X0,=chCr			// Load line feed
+	BL	putch				// Print line feed
+
+// Prompting inputs	
 	LDR x0, =szPrompt	// points to szPrompt
 	BL  putstring		// displays to terminal
 

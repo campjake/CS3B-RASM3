@@ -1,5 +1,5 @@
 // Style Sheet
-// Programmer	: Jacob Campbell & Greg Shane
+// Programmer	: Jacob Campbell & Gregory Shane
 // RASM #		: 3
 // Purpose		: String Library
 // Date			: 3/22/2023

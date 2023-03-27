@@ -1,5 +1,5 @@
 // Style Sheet
-// Programmer   : Jacob Campbell & Craig Shane
+// Programmer   : Jacob Campbell & Gregory Shane
 // RASM #       : 3
 // Purpose      : String Library - String_lastIndexOf_1
 // Date         : 3/24/2023
