@@ -37,7 +37,7 @@ String_lastIndexOf_3:
 	MOV		X0, X1				// Move substring to X0
 	BL		String_length		// String length of substr in X0
 	SUB		X21, X0, X23		// i = string_length - substring_length
-
+								// string can't equal substring before until this index number
 	LDRB	W2, [X20]			// Get base address of substring
 
 LOOP:

@@ -9,7 +9,7 @@
 //					- Pointer to a substring in X1
 // Postconditions	- Returns an int in X0 for where the first occurrence of the
 //						substring X1 in the string from X0
-// All Registers except X0, X1, X2, X4-7, X9 are preserved
+// All Registers except X0 - X3 are preserved
 
 	.text
 	.global String_indexOf_3
@@ -22,54 +22,53 @@ String_indexOf_3:
 	STR		X23, [SP, #-16]!	// Push X23
 	STR		LR, [SP, #-16]!		// Push LR
 
-	MOV		X19, #0		// Initialize i
- 	MOV		X20, X0		// szIn to X20
- 	MOV		X21, X1		// szSubStr to X21
+	MOV		X19, X0		// Copy string
+ 	MOV		X20, X1		// Copy substring
+ 	MOV		X21, #0		// init i = 0
+	MOV		X22, #0		// init j = 0
 
-	MOV		X0, X1			// Put szSubStr in X0
-	BL		String_length	// Get string length of szsubstr
-	MOV		X22, X0			// Save it to X22
+	LDRB	W2, [X20]	// Get base address of substring
 
 LOOP:
 // Find where a matching character is
-	MOV		X0, X20				// *X0 = szIn
-	LDRB	W1, [X21]			// W1 = szSubStr[0]
-	MOV		X2, X19				// Copy beginIndex to X2
-	BL		String_indexOf_2	// Find index where matching char
-	CMP		X0, #-1				// Check if hit null term
-	BEQ		END					// Branch to end
-	MOV		X1, X0				// X1 = i (index of matching character)
+	LDRB	W1, [X19, X21]		// Get a char of string at index i
+	CMP		X1, 0x00			// Check if hit null term
+	BEQ		NOT_FOUND			// Branch to NOT_FOUND
+	
+	CMP		W1, W2				// CMP characters of string and substring
+	MOV		X23, X21			// Copy i to X23
+	ADD		X21, X21, #1		// i++
+	BNE		LOOP				// Branch back to loop
 
-// Create a substring of length substr from the original string
-// Error check to make sure we don't go out of bounds
-	MOV		X0, X20				// Retrieve szIn
-	BL		String_length		// Get string length
+COMPARE:
+	LDRB	W1, [X19, X23]		// Load string[k]
+	LDRB	W3, [X20, X22]		// Load substring[j]
 
-	MOV		X2, X22				// Retrieve length of substr
-	ADD		X2, X2, X1			// Offset end index by start index
+	CMP		W2, 0x00			// Check for null term
+	BEQ		FOUND				// Branch if found
 
-// Error check
-	CMP		X0, X2				// Check if string lengths match
-	BNE		INCR				// Don't go out of bounds if not the same
-	MOV		X0, X20				// Retrieve szIn b/c its safe to make substring
-	BL		substring1			// Create a substring to check for a match
+	ADD		X23, X23, #1		// k++	(k is copy of i)
+	ADD		X22, X22, #1		// j++
 
-// Invoke String_Equals to check if the strings match	
-	MOV		X1, X21				// X1 = *szSubStr
+	CMP		W1, W2				// string[k] == string[j]
+	BEQ		COMPARE				// Branch back to COMPARE
 
-	BL		String_Equals		// Check if equal
-	CMP		X0, #1				// if True
-	BEQ		END					// Branch to return index value i
+	LDRB	W2, [X20]			// Load substring base address
+	MOV		X22, #0				// init j = 0
+	B.NE	LOOP				// Branch back to LOOP
 
-INCR:
-	ADD		X19, X19, #1		// ++i
-	B		LOOP				// Branch to LOOP
+NOT_FOUND:
+	MOV		X0, #-1				// Return -1 if not found
+	B		END					// Branch to end
+
+FOUND:
+	SUB		X0, X21, #1			// i--
 
 END:
-	LDR		LR, [SP], #16		// POP LR
-	LDR		X22, [SP], #16		// POP X22
-	LDR		X21, [SP], #16		// POP X21
+	LDR		LR, [SP], #16		// Pop LR
+	LDR		X23, [SP], #16		// Pop X23
+	LDR		X22, [SP], #16		// Pop X22
+	LDR		X21, [SP], #16		// Pop X21
 	LDR		X20, [SP], #16		// Pop X20
 	LDR		X19, [SP], #16		// Pop X19
-
 	RET
